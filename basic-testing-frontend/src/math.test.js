@@ -26,7 +26,7 @@ test("yields NaN if at least one invalid number is provided", () => {
     expect(result).toBeNaN();
 });
 
-test("yeilds a correct sum if an array of numeric string values is provided", () => {
+test("yields a correct sum if an array of numeric string values is provided", () => {
     // Arrange
     const numbers = ['1', '2'];
 
@@ -37,5 +37,19 @@ test("yeilds a correct sum if an array of numeric string values is provided", ()
     const expectedResult = numbers.reduce((preValue, curValue) => +preValue + +curValue, 0); // Adding + to force a converstion to a real number
 
     expect(result).toBe(expectedResult)
+})
+
+test("yields 0 if an empty array is provided", () => {
+    const numbers = [];
+    const result = add(numbers);
+    expect(result).toBe(0)
+})
+
+test("throws an error if no value is passed into the function", () => {    
+    try {
+        const result = add();
+    } catch(error) {
+        expect(error).toBeDefined();
+    }
 })
 
