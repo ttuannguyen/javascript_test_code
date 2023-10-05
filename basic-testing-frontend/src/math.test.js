@@ -46,10 +46,19 @@ test("yields 0 if an empty array is provided", () => {
 })
 
 test("throws an error if no value is passed into the function", () => {    
-    try {
-        const result = add();
-    } catch(error) {
-        expect(error).toBeDefined();
+    const resultFn = () => {
+        add();
     }
+    expect(resultFn).toThrow();
+    // Logic: expect should receive a function and vitest should execute this function for us and checked whether it froze. 
+    // By wrapping add() in a function, we can make sure it's not executed immediately, but instead in combination with toThrow(), which checks whether an error was thrown. The function stored in resultFn will be executed by Vitest when the test runs and Vitest will check whether an error was thrown and then consider the test successful if an error was thrown or unsuccessful if otherwise.
+    // Remember: the "note" property checks for the opposite.
+
+    // Alternative method: try/catch block
+    // try {
+    //     const result = add();
+    // } catch(error) {
+    //     expect(error).toBeDefined();
+    // }
 })
 
