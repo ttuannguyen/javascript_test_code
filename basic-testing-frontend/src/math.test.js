@@ -50,7 +50,7 @@ test("throws an error if no value is passed into the function", () => {
         add();
     }
     expect(resultFn).toThrow();
-    // Logic: expect should receive a function and vitest should execute this function for us and checked whether it froze. 
+    // Logic: expect should receive a function and Vitest should execute this function for us and checked whether it froze. 
     // By wrapping add() in a function, we can make sure it's not executed immediately, but instead in combination with toThrow(), which checks whether an error was thrown. The function stored in resultFn will be executed by Vitest when the test runs and Vitest will check whether an error was thrown and then consider the test successful if an error was thrown or unsuccessful if otherwise.
     // Remember: the "note" property checks for the opposite.
 
@@ -62,3 +62,16 @@ test("throws an error if no value is passed into the function", () => {
     // }
 })
 
+test("throws an error if provided with multiple arguments instead of an array", () => {
+    // Arrange
+    const num1 = 1;
+    const num2 = 2;
+
+    // Act
+    const resultFn = () => {
+        add(num1, num2);
+    };
+
+    // Assert
+    expect(resultFn).toThrow();
+});
